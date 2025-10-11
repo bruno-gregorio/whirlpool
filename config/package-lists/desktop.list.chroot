@@ -1,37 +1,67 @@
-# Desktop Environment - Uncomment your preferred desktop
-# For GNOME
-# gnome-core
-# gnome-shell
-# gdm3
+# Display server
+xorg
+xserver-xorg-video-all
+xserver-xorg-input-all
 
-# For KDE Plasma
-# kde-plasma-desktop
-# sddm
+# Display manager
+gdm3
 
-# For XFCE
-# xfce4
-# xfce4-goodies
-# lightdm
+# GNOME Shell and session (core only)
+gnome-shell
+gnome-session
+gnome-settings-daemon
+gnome-keyring
 
-# For LXDE
-# lxde-core
-# lxdm
+# GNOME core applications
+gnome-control-center
+gnome-terminal
+gnome-system-monitor
+nautilus
 
-# For Cinnamon
-# cinnamon-core
-# lightdm
+# Document viewers
+evince
+eog
 
-# For MATE
-# mate-desktop-environment-core
-# lightdm
+# Archive manager
+file-roller
 
-# X Server (required for any GUI)
-# xorg
-# xinit
+# Screenshot tool
+gnome-screenshot
 
-# Common desktop applications
-# firefox-esr
-# libreoffice-writer
-# libreoffice-calc
-# gimp
-# vlc
+# Network management UI
+network-manager-gnome
+
+# Audio
+pipewire
+pipewire-pulse
+pipewire-alsa
+wireplumber
+
+# Volume control
+pavucontrol
+
+# Fonts
+fonts-dejavu-core
+fonts-liberation
+fonts-noto
+fonts-noto-mono
+fonts-font-awesome
+fonts-powerline
+fonts-hack
+fonts-firacode
+
+# GTK themes
+adwaita-icon-theme
+
+# Browser
+chromium
+
+# Printing (minimal)
+cups
+system-config-printer
+
+# Power management
+gnome-power-manager
+
+# Polkit authentication agent
+policykit-1-gnome

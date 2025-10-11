@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Configure dracut as default initramfs generator
+# This hook runs in the chroot environment during build
+
+set -e
+
+echo "Configuring dracut as default initramfs..."
+
+# Remove live-boot if it conflicts with dracut
+# Keep live-config for live system configuration
+if dpkg -l | grep -q "^ii.*live-boot"; then
+    echo "Note: live-boot is installed, ensuring compatibility with dracut"
+fi
+
+# Ensure dracut is the default
+if [ -x /usr/bin/dracut ]; then
+    echo "Dracut is installed and available"
+    
+    # Create dracut configuration
+    mkdir -p /etc/dracut.conf.d
+    
+    cat > /etc/dracut.conf.d/10-whirlpool.conf << 'EOF'
+# Whirlpool dracut configuration
+hostonly="no"
+compress="xz"
+add_dracutmodules+=" livenet dmsquash-live "
+omit_dracutmodules+=" plymouth "
+EOF
+    
+    echo "Dracut configuration completed"
+else
+    echo "Warning: dracut not found!"
+    exit 1
+fi
+
+# Ensure kernel hooks use dracut
+if [ -d /etc/kernel/postinst.d ]; then
+    echo "Kernel hooks directory exists"
+fi
+
+echo "Dracut setup completed!"

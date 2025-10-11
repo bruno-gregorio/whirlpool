@@ -1,23 +1,35 @@
 #!/bin/bash
 
-# Example hook: Configure system settings
+# Minimal GNOME configuration hook
 # This hook runs in the chroot environment during build
 
 set -e
 
-echo "Running custom configuration hook..."
+echo "Configuring minimal Debian 13 system..."
 
-# Example: Set timezone
-# echo "America/New_York" > /etc/timezone
-# dpkg-reconfigure -f noninteractive tzdata
+# Clean up any unnecessary packages
+apt-get autoremove -y
+apt-get clean
 
-# Example: Configure locale
-# echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
-# locale-gen
-# update-locale LANG=en_US.UTF-8
+# Disable unnecessary services
+systemctl disable apt-daily.timer 2>/dev/null || true
+systemctl disable apt-daily-upgrade.timer 2>/dev/null || true
 
-# Example: Create custom user with sudo privileges
-# useradd -m -s /bin/bash -G sudo liveuser
-# echo "liveuser:live" | chpasswd
+# Configure GNOME minimal settings
+mkdir -p /etc/dconf/db/local.d
+cat > /etc/dconf/db/local.d/01-minimal << 'EOF'
+[org/gnome/desktop/background]
+picture-uri=''
+primary-color='#3465a4'
 
-echo "Custom configuration completed!"
+[org/gnome/desktop/interface]
+enable-animations=true
+gtk-theme='Adwaita'
+
+[org/gnome/shell]
+favorite-apps=['chromium.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop']
+EOF
+
+dconf update
+
+echo "Minimal configuration completed!"

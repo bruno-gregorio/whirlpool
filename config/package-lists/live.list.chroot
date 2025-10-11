@@ -3,28 +3,65 @@ live-boot
 live-config
 live-config-systemd
 
-# System utilities
+# System base
 systemd
 systemd-sysv
 dbus
 udev
 sudo
 
-# Network management
+# Network
 network-manager
-wireless-tools
 wpasupplicant
+wireless-tools
 
-# Firmware (for hardware support)
+# Firmware (complete hardware support)
 firmware-linux
 firmware-linux-free
 firmware-linux-nonfree
 firmware-misc-nonfree
+firmware-amd-graphics
+firmware-atheros
+firmware-bnx2
+firmware-bnx2x
+firmware-brcm80211
+firmware-cavium
+firmware-intel-sound
+firmware-iwlwifi
+firmware-libertas
+firmware-myricom
+firmware-netxen
+firmware-qlogic
+firmware-realtek
+firmware-ti-connectivity
+
+# Dracut for initramfs
+dracut
+dracut-network
 
 # File system support
 ntfs-3g
 exfat-fuse
 dosfstools
+btrfs-progs
+xfsprogs
+
+# Basic utilities
+bash-completion
+curl
+wget
+nano
+git
+
+# SSH client and tools
+openssh-client
+ssh-askpass-gnome
+keychain
+
+# Shell
+zsh
+zsh-autosuggestions
+zsh-syntax-highlighting
 
 # Compression tools
 zip
@@ -32,14 +69,9 @@ unzip
 bzip2
 xz-utils
 p7zip-full
-
-# Text editor
-nano
-vim-tiny
-
-# Basic utilities
-bash-completion
-curl
-wget
-htop
-rsync
+gzip
+tar
+zstd
+lz4
+rar
+unrar
