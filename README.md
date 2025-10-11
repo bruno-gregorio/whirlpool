@@ -15,3 +15,7 @@ sudo make rebuild  # Clean and rebuild
 - `config/package-lists/` - Package selection
 - `auto/config` - Build settings (dracut, no recommends)
 - `config/hooks/normal/` - Build hooks
+
+## License
+
+GPL-3.0 - See [LICENSE](LICENSE) file for details.
