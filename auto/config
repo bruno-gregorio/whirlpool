@@ -21,7 +21,7 @@ lb config noauto \
     --bootloader grub-efi \
     --binary-images iso-hybrid \
     --checksums sha256 \
-    --compression xz \
+    --compression gzip \
     --debootstrap-options "--include=ca-certificates,dracut" \
     --firmware-chroot true \
     --firmware-binary true \

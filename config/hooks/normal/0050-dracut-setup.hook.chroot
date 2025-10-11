@@ -23,7 +23,7 @@ if [ -x /usr/bin/dracut ]; then
     cat > /etc/dracut.conf.d/10-whirlpool.conf << 'EOF'
 # Whirlpool dracut configuration
 hostonly="no"
-compress="xz"
+compress="zstd"
 add_dracutmodules+=" livenet dmsquash-live "
 omit_dracutmodules+=" plymouth "
 EOF
