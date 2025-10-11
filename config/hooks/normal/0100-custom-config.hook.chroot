@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Example hook: Configure system settings
+# This hook runs in the chroot environment during build
+
+set -e
+
+echo "Running custom configuration hook..."
+
+# Example: Set timezone
+# echo "America/New_York" > /etc/timezone
+# dpkg-reconfigure -f noninteractive tzdata
+
+# Example: Configure locale
+# echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+# locale-gen
+# update-locale LANG=en_US.UTF-8
+
+# Example: Create custom user with sudo privileges
+# useradd -m -s /bin/bash -G sudo liveuser
+# echo "liveuser:live" | chpasswd
+
+echo "Custom configuration completed!"

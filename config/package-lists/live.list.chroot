@@ -1,0 +1,45 @@
+# Essential live system packages
+live-boot
+live-config
+live-config-systemd
+
+# System utilities
+systemd
+systemd-sysv
+dbus
+udev
+sudo
+
+# Network management
+network-manager
+wireless-tools
+wpasupplicant
+
+# Firmware (for hardware support)
+firmware-linux
+firmware-linux-free
+firmware-linux-nonfree
+firmware-misc-nonfree
+
+# File system support
+ntfs-3g
+exfat-fuse
+dosfstools
+
+# Compression tools
+zip
+unzip
+bzip2
+xz-utils
+p7zip-full
+
+# Text editor
+nano
+vim-tiny
+
+# Basic utilities
+bash-completion
+curl
+wget
+htop
+rsync

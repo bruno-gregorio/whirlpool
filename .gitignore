@@ -1,0 +1,50 @@
+# live-build generated files
+/.build/
+/auto/config.save
+/binary/
+/binary.contents
+/binary.files
+/binary.packages
+/cache/
+/chroot/
+/chroot.files
+/chroot.packages.install
+/chroot.packages.live
+/config/binary
+/config/bootstrap
+/config/chroot
+/config/common
+/config/source
+/local/
+/source/
+/.lock
+/.stage
+
+# Build artifacts
+*.iso
+*.img
+*.hybrid.iso
+*.contents
+*.packages
+*.list
+*.md5sum
+*.sha256sum
+build.log
+*.log
+
+# Temporary files
+*~
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.directory
+desktop.ini

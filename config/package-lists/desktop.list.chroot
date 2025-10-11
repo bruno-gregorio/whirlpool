@@ -1,0 +1,37 @@
+# Desktop Environment - Uncomment your preferred desktop
+# For GNOME
+# gnome-core
+# gnome-shell
+# gdm3
+
+# For KDE Plasma
+# kde-plasma-desktop
+# sddm
+
+# For XFCE
+# xfce4
+# xfce4-goodies
+# lightdm
+
+# For LXDE
+# lxde-core
+# lxdm
+
+# For Cinnamon
+# cinnamon-core
+# lightdm
+
+# For MATE
+# mate-desktop-environment-core
+# lightdm
+
+# X Server (required for any GUI)
+# xorg
+# xinit
+
+# Common desktop applications
+# firefox-esr
+# libreoffice-writer
+# libreoffice-calc
+# gimp
+# vlc
