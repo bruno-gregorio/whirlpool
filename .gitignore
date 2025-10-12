@@ -19,6 +19,8 @@
 /source/
 /.lock
 /.stage
+/binary.modified_timestamps
+/live-image-amd64.files
 
 # Auto-generated hooks (created by lb config)
 /config/hooks/live/
