@@ -34,9 +34,6 @@ firmware-qlogic
 firmware-realtek
 firmware-ti-connectivity
 
-# Boot manager
-refind
-
 # Dracut for live and installed system
 dracut
 dracut-live

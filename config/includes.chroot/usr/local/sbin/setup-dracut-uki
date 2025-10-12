@@ -6,9 +6,17 @@ set -e
 
 echo "=== Whirlpool: Configuring dracut and UKIs ==="
 
+# Install refind if not present
+if ! command -v refind-install >/dev/null 2>&1; then
+    apt-get update
+    apt-get install -y refind
+fi
+
 # Remove initramfs-tools (conflicts with dracut)
-apt-get remove -y --purge initramfs-tools initramfs-tools-core
-apt-get autoremove -y
+if dpkg -l | grep -q "^ii.*initramfs-tools"; then
+    apt-get remove -y --purge initramfs-tools initramfs-tools-core
+    apt-get autoremove -y
+fi
 
 # Enable dracut configuration
 if [ -f /etc/dracut.conf.d/20-whirlpool-installed.conf.disabled ]; then
