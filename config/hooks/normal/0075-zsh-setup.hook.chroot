@@ -1,26 +1,7 @@
 #!/bin/bash
-
-# Configure zsh as default shell
-# This hook runs in the chroot environment during build
-
 set -e
 
-echo "Configuring zsh as default shell..."
+[ ! -x /usr/bin/zsh ] && exit 1
 
-# Set zsh as default shell for new users
-if [ -x /usr/bin/zsh ]; then
-    # Change default shell in /etc/passwd for root
-    chsh -s /usr/bin/zsh root
-    
-    # Set zsh as default shell in adduser config
-    if [ -f /etc/adduser.conf ]; then
-        sed -i 's|DSHELL=.*|DSHELL=/usr/bin/zsh|g' /etc/adduser.conf
-    fi
-    
-    echo "Zsh configured as default shell"
-else
-    echo "Warning: zsh not found!"
-    exit 1
-fi
-
-echo "Zsh setup completed!"
+chsh -s /usr/bin/zsh root
+sed -i 's|DSHELL=.*|DSHELL=/usr/bin/zsh|g' /etc/adduser.conf

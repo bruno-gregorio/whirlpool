@@ -1,0 +1,19 @@
+# Whirlpool dracut configuration for installed system
+# This config enables UKI (Unified Kernel Image) generation
+
+# Host-specific initramfs (optimized for installed system)
+hostonly="yes"
+hostonly_cmdline="yes"
+
+# Compression
+compress="zstd"
+
+# Omit live system modules
+omit_dracutmodules+=" livenet dmsquash-live convertfs pollcdrom plymouth "
+
+# UKI (Unified Kernel Image) configuration
+uefi="yes"
+uefi_stub="/usr/lib/systemd/boot/efi/linuxx64.efi.stub"
+
+# Kernel command line (customize as needed after installation)
+# kernel_cmdline="root=UUID=xxx quiet splash"

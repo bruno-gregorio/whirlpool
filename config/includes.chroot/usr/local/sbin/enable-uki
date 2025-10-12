@@ -1,0 +1,20 @@
+#!/bin/bash
+set -e
+
+# Exit if running on live system
+grep -q "boot=live" /proc/cmdline && exit 1
+
+# Disable live config, enable installed config
+[ -f /etc/dracut.conf.d/10-whirlpool-live.conf ] && \
+    mv /etc/dracut.conf.d/10-whirlpool-live.conf{,.disabled}
+
+[ -f /etc/dracut.conf.d/20-whirlpool-installed.conf.disabled ] && \
+    mv /etc/dracut.conf.d/20-whirlpool-installed.conf{.disabled,}
+
+# Install systemd-boot-efi if needed
+dpkg -l | grep -q "^ii.*systemd-boot-efi" || apt-get install -y systemd-boot-efi
+
+# Generate UKI in /boot
+KVER=$(uname -r)
+dracut --force --hostonly --hostonly-cmdline --uefi \
+    /boot/debian-${KVER}.efi ${KVER}

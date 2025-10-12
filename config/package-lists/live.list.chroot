@@ -39,6 +39,9 @@ firmware-ti-connectivity
 dracut
 dracut-network
 
+# UKI support
+systemd-boot-efi
+
 # File system support
 ntfs-3g
 exfat-fuse

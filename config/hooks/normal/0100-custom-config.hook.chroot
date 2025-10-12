@@ -1,21 +1,12 @@
 #!/bin/bash
-
-# Minimal GNOME configuration hook
-# This hook runs in the chroot environment during build
-
 set -e
 
-echo "Configuring minimal Debian 13 system..."
-
-# Clean up any unnecessary packages
 apt-get autoremove -y
 apt-get clean
 
-# Disable unnecessary services
 systemctl disable apt-daily.timer 2>/dev/null || true
 systemctl disable apt-daily-upgrade.timer 2>/dev/null || true
 
-# Configure GNOME minimal settings
 mkdir -p /etc/dconf/db/local.d
 cat > /etc/dconf/db/local.d/01-minimal << 'EOF'
 [org/gnome/desktop/background]
@@ -31,5 +22,3 @@ favorite-apps=['chromium.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Term
 EOF
 
 dconf update
-
-echo "Minimal configuration completed!"
