@@ -1,0 +1,22 @@
+#!/bin/bash
+set -e
+
+[ ! -x /usr/sbin/refind-install ] && exit 1
+
+# Configure rEFInd
+mkdir -p /etc/refind.d
+
+cat > /etc/refind.d/whirlpool.conf << 'EOF'
+# Theme configuration
+include themes/refind-theme-regular/theme.conf
+
+# Enable all filesystem drivers
+use_all_drivers
+
+# Scan for kernels and UKIs
+scan_all_linux_kernels
+also_scan_dirs boot,@/boot
+EOF
+
+# Install rEFInd to ESP
+refind-install

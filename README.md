@@ -5,6 +5,7 @@ Minimal Debian 13 (Trixie) live image with GNOME desktop and dracut.
 ## Usage
 
 ```bash
+git submodule update --init --recursive  # Initialize submodules
 sudo make build    # Build ISO
 sudo make clean    # Clean
 sudo make rebuild  # Clean and rebuild

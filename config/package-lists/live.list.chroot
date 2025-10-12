@@ -42,6 +42,9 @@ dracut-network
 # UKI support
 systemd-boot-efi
 
+# Boot manager
+refind
+
 # File system support
 ntfs-3g
 exfat-fuse
