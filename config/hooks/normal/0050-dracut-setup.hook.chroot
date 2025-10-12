@@ -8,7 +8,9 @@ if [ ! -x /usr/bin/dracut ]; then
 fi
 
 # Remove initramfs-tools if present (conflicts with dracut)
-dpkg -l | grep -q "^ii.*initramfs-tools" && apt-get purge -y initramfs-tools || true
+if dpkg -l | grep -q "^ii.*initramfs-tools"; then
+    apt-get purge -y initramfs-tools
+fi
 
 # Configure dracut for live system
 mkdir -p /etc/dracut.conf.d

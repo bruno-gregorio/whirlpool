@@ -1,5 +1,4 @@
 # Essential live system packages
-live-boot
 live-config
 live-config-systemd
 
@@ -38,8 +37,9 @@ firmware-ti-connectivity
 # Boot manager
 refind
 
-# Dracut for installed system (not used in live)
+# Dracut for live and installed system
 dracut
+dracut-live
 dracut-network
 systemd-boot-efi
 

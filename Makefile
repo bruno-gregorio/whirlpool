@@ -1,9 +1,12 @@
-.PHONY: help build clean rebuild permissions
+.PHONY: help build clean rebuild permissions check-shell
 
 .DEFAULT_GOAL := help
 
 help: ## Show available commands
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  %-15s %s\n", $$1, $$2}'
+
+check-shell: ## Check all shell scripts with shellcheck
+	@./check-shell.sh
 
 permissions: ## Set correct permissions on all scripts
 	@chmod +x auto/*
