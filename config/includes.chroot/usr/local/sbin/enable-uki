@@ -1,20 +1,31 @@
 #!/bin/bash
+# Regenerate Unified Kernel Images (UKI) after kernel updates
+# This script is for maintenance after installation (e.g., after kernel upgrades)
+
 set -e
 
-# Exit if running on live system
-grep -q "boot=live" /proc/cmdline && exit 1
+if ! command -v dracut >/dev/null 2>&1; then
+    echo "Error: dracut is not installed on this system."
+    echo "UKIs should have been configured during installation."
+    exit 1
+fi
 
-# Disable live config, enable installed config
-[ -f /etc/dracut.conf.d/10-whirlpool-live.conf ] && \
-    mv /etc/dracut.conf.d/10-whirlpool-live.conf{,.disabled}
+# Generate UKIs for all installed kernels
+for KVER in /lib/modules/*; do
+    KVER=$(basename "$KVER")
+    
+    # Skip if not a kernel directory
+    [ -d "/lib/modules/$KVER" ] || continue
+    
+    echo "Regenerating UKI for kernel $KVER..."
+    
+    dracut --force \
+        --uefi \
+        --kver "$KVER" \
+        "/boot/debian-${KVER}.efi"
+    
+    echo "✓ UKI regenerated: /boot/debian-${KVER}.efi"
+done
 
-[ -f /etc/dracut.conf.d/20-whirlpool-installed.conf.disabled ] && \
-    mv /etc/dracut.conf.d/20-whirlpool-installed.conf{.disabled,}
-
-# Install systemd-boot-efi if needed
-dpkg -l | grep -q "^ii.*systemd-boot-efi" || apt-get install -y systemd-boot-efi
-
-# Generate UKI in /boot
-KVER=$(uname -r)
-dracut --force --hostonly --hostonly-cmdline --uefi \
-    /boot/debian-${KVER}.efi ${KVER}
+echo "UKI regeneration complete!"
+echo "rEFInd will automatically detect them on next boot."

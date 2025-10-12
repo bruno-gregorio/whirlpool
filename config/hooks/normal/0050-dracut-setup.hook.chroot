@@ -1,8 +1,16 @@
 #!/bin/bash
 set -e
 
-[ ! -x /usr/bin/dracut ] && exit 1
+# Ensure dracut is installed
+if [ ! -x /usr/bin/dracut ]; then
+    apt-get update
+    apt-get install -y dracut dracut-network
+fi
 
+# Remove initramfs-tools if present (conflicts with dracut)
+dpkg -l | grep -q "^ii.*initramfs-tools" && apt-get purge -y initramfs-tools || true
+
+# Configure dracut for live system
 mkdir -p /etc/dracut.conf.d
 cat > /etc/dracut.conf.d/10-whirlpool-live.conf << 'EOF'
 hostonly="no"
@@ -13,3 +21,6 @@ omit_dracutmodules+=" plymouth "
 filesystems+=" squashfs overlay "
 add_drivers+=" squashfs overlay loop "
 EOF
+
+# Set dracut as the default initramfs generator
+update-alternatives --install /usr/sbin/update-initramfs update-initramfs /usr/sbin/dracut 50 || true

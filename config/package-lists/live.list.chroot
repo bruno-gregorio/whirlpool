@@ -35,15 +35,13 @@ firmware-qlogic
 firmware-realtek
 firmware-ti-connectivity
 
-# Dracut for initramfs
-dracut
-dracut-network
-
-# UKI support
-systemd-boot-efi
-
 # Boot manager
 refind
+
+# Dracut for installed system (not used in live)
+dracut
+dracut-network
+systemd-boot-efi
 
 # File system support
 ntfs-3g
