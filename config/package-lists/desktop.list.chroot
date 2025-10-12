@@ -63,6 +63,3 @@ system-config-printer
 
 # Power management
 gnome-power-manager
-
-# Polkit authentication agent
-policykit-1-gnome
