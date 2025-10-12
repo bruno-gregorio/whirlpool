@@ -24,5 +24,27 @@ filesystems+=" squashfs overlay "
 add_drivers+=" squashfs overlay loop "
 EOF
 
-# Set dracut as the default initramfs generator
-update-alternatives --install /usr/sbin/update-initramfs update-initramfs /usr/sbin/dracut 50 || true
+# Create update-initramfs wrapper for dracut compatibility
+cat > /usr/sbin/update-initramfs << 'WRAPPER_EOF'
+#!/bin/bash
+# Wrapper for dracut to provide update-initramfs compatibility
+# This allows live-build to work with dracut instead of initramfs-tools
+
+case "$1" in
+    -c|-u)
+        # Create or update initramfs - use dracut
+        shift
+        exec /usr/bin/dracut --force "$@"
+        ;;
+    -d)
+        # Delete - dracut doesn't need this, just exit successfully
+        exit 0
+        ;;
+    *)
+        # Default: regenerate all
+        exec /usr/bin/dracut --force --regenerate-all
+        ;;
+esac
+WRAPPER_EOF
+
+chmod +x /usr/sbin/update-initramfs

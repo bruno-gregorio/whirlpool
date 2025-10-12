@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
 
-[ ! -x /usr/sbin/refind-install ] && exit 1
+# Skip if refind is not installed (will be installed on target system)
+[ ! -x /usr/sbin/refind-install ] && exit 0
 
 # Configure rEFInd
 mkdir -p /etc/refind.d
