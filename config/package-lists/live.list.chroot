@@ -64,6 +64,9 @@ zsh
 zsh-autosuggestions
 zsh-syntax-highlighting
 
+# Boot loader (for installed system)
+refind
+
 # Compression tools
 zip
 unzip

@@ -7,7 +7,8 @@ This repo serves the purpose of building a debian live image with some changes. 
 - Use Dracut instead of iniramfs-tools
 - Have a reduced set of packages, the default gnome debian installation includes too many things, I want to omit things like games, office and support for south-east asian languages from this spin.
 - Install refind at the end of the installation process with the refind-theme-regular, as defined by the git submodule.
-- A compressão das padrão deve ser zstd e não glib
+- Default compression must be zstd instead of gzip
+
 Project wide, I have the following goals:
 - Project scripts and tasks must be handled by Make.
 - Keep the documentation inside scripts minimal.
@@ -16,17 +17,19 @@ Project wide, I have the following goals:
 ## Usage
 
 ```bash
-git submodule update --init --recursive  # Initialize submodules
-sudo make build    # Build ISO
-sudo make clean    # Clean
-sudo make rebuild  # Clean and rebuild
+make help           # Show available commands
+make submodules     # Initialize submodules
+make check-shell    # Validate shell scripts
+sudo make build     # Build ISO
+sudo make clean     # Clean build artifacts
+sudo make rebuild   # Clean and rebuild
 ```
 
 ## Configuration
 
 - `config/package-lists/` - Package selection
-- `auto/config` - Build settings (dracut, no recommends)
-- `config/hooks/normal/` - Build hooks
+- `auto/config` - Build settings
+- `config/hooks/normal/` - Customization hooks
 
 ## License
 

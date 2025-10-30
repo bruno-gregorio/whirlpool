@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# live-build configuration script
-# This file defines all settings for the live image build
-
 set -e
 
 lb config noauto \
@@ -22,7 +19,7 @@ lb config noauto \
     --bootloader grub-efi \
     --binary-images iso-hybrid \
     --checksums sha256 \
-    --compression gzip \
+    --compression zstd \
     --debootstrap-options "--include=ca-certificates" \
     --debian-installer-preseedfile /preseed.cfg \
     --firmware-chroot true \

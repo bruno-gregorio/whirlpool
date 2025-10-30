@@ -43,6 +43,15 @@ echo
 for script in "${SCRIPTS[@]}"; do
     if [[ -f "$script" ]]; then
         echo "Checking: $script"
+        
+        # Check if file is executable
+        if [[ ! -x "$script" ]]; then
+            echo "  ⚠ WARNING: File is not executable!"
+            echo "  Run: chmod +x $script"
+            ((ERRORS++)) || true
+        fi
+        
+        # Run shellcheck
         if shellcheck -x -s sh "$script" 2>&1; then
             echo "  ✓ OK"
         else
