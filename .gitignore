@@ -70,6 +70,7 @@ Thumbs.db
 
 # IDE and editor files
 .vscode/
+.extra-docs/
 .idea/
 *.sublime-project
 *.sublime-workspace
