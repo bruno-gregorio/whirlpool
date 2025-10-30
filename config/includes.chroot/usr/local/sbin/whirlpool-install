@@ -1,0 +1,10 @@
+#!/bin/bash
+set -e
+
+/usr/local/sbin/setup-dracut
+/usr/local/sbin/setup-zsh
+/usr/local/sbin/setup-gnome
+/usr/local/sbin/setup-refind
+/usr/local/sbin/generate-uki
+
+apt-get clean

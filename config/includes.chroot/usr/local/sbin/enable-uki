@@ -1,31 +1,9 @@
 #!/bin/bash
-# Regenerate Unified Kernel Images (UKI) after kernel updates
-# This script is for maintenance after installation (e.g., after kernel upgrades)
-
 set -e
 
 if ! command -v dracut >/dev/null 2>&1; then
-    echo "Error: dracut is not installed on this system."
-    echo "UKIs should have been configured during installation."
+    echo "Error: dracut is not installed"
     exit 1
 fi
 
-# Generate UKIs for all installed kernels
-for KVER in /lib/modules/*; do
-    KVER=$(basename "$KVER")
-    
-    # Skip if not a kernel directory
-    [ -d "/lib/modules/$KVER" ] || continue
-    
-    echo "Regenerating UKI for kernel $KVER..."
-    
-    dracut --force \
-        --uefi \
-        --kver "$KVER" \
-        "/boot/debian-${KVER}.efi"
-    
-    echo "✓ UKI regenerated: /boot/debian-${KVER}.efi"
-done
-
-echo "UKI regeneration complete!"
-echo "rEFInd will automatically detect them on next boot."
+/usr/local/sbin/generate-uki

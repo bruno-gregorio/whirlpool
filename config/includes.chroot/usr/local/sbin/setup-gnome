@@ -1,12 +1,6 @@
 #!/bin/bash
 set -e
 
-apt-get autoremove -y
-apt-get clean
-
-systemctl disable apt-daily.timer 2>/dev/null || true
-systemctl disable apt-daily-upgrade.timer 2>/dev/null || true
-
 mkdir -p /etc/dconf/db/local.d
 cat > /etc/dconf/db/local.d/01-minimal << 'EOF'
 [org/gnome/desktop/background]
@@ -22,3 +16,6 @@ favorite-apps=['chromium.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Term
 EOF
 
 dconf update
+
+systemctl disable apt-daily.timer 2>/dev/null || true
+systemctl disable apt-daily-upgrade.timer 2>/dev/null || true

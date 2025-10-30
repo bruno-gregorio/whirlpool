@@ -1,43 +1,16 @@
 #!/bin/bash
 set -e
 
-# This hook configures rEFInd settings for the installed system
-# rEFInd will be installed during the installation process, not during live build
+# Only prepare refind configuration file for installed system
+# Does not modify live system
 
-# Ensure refind is installed
-if [ ! -x /usr/sbin/refind-install ]; then
-    echo "Warning: refind not found, skipping configuration"
-    exit 0
-fi
-
-# Create rEFInd configuration directory
 mkdir -p /etc/refind.d
 
-# Create Whirlpool-specific rEFInd configuration
 cat > /etc/refind.d/whirlpool.conf << 'EOF'
-# Whirlpool rEFInd Configuration
-
-# Theme configuration
 include themes/refind-theme-regular/theme.conf
-
-# Enable all filesystem drivers
 use_all_drivers
-
-# Scan for kernels and UKIs
 scan_all_linux_kernels
 also_scan_dirs boot,@/boot
-
-# Timeout
 timeout 5
-
-# Hide unnecessary boot options
 dont_scan_dirs /EFI/debian,/EFI/BOOT
 EOF
-
-# Copy theme to the expected location
-if [ -d /usr/share/refind/themes/refind-theme-regular ]; then
-    mkdir -p /boot/efi/EFI/refind/themes
-    cp -r /usr/share/refind/themes/refind-theme-regular /boot/efi/EFI/refind/themes/ || true
-fi
-
-echo "rEFInd configuration created successfully"

@@ -2,80 +2,31 @@
 live-config
 live-config-systemd
 
-# System base
-systemd
-systemd-sysv
-dbus
-udev
-sudo
-
 # Network
 network-manager
 wpasupplicant
-wireless-tools
 
-# Firmware (complete hardware support)
+# Firmware (hardware support)
 firmware-linux
 firmware-linux-free
 firmware-linux-nonfree
 firmware-misc-nonfree
 firmware-amd-graphics
 firmware-atheros
-firmware-bnx2
-firmware-bnx2x
 firmware-brcm80211
-firmware-cavium
 firmware-intel-sound
 firmware-iwlwifi
-firmware-libertas
-firmware-myricom
-firmware-netxen
-firmware-qlogic
 firmware-realtek
-firmware-ti-connectivity
-
-# Dracut for live and installed system
-dracut
-dracut-live
-dracut-network
-systemd-boot-efi
 
 # File system support
 ntfs-3g
 exfat-fuse
 dosfstools
-btrfs-progs
-xfsprogs
 
-# Basic utilities
-bash-completion
-curl
-wget
-nano
-git
-
-# SSH client and tools
-openssh-client
-ssh-askpass-gnome
-keychain
-
-# Shell
+# Packages for installed system (not used in live)
+dracut
+dracut-network
+refind
 zsh
 zsh-autosuggestions
 zsh-syntax-highlighting
-
-# Boot loader (for installed system)
-refind
-
-# Compression tools
-zip
-unzip
-bzip2
-xz-utils
-p7zip-full
-gzip
-tar
-zstd
-lz4
-rar
-unrar

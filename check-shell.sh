@@ -21,7 +21,12 @@ SCRIPTS=(
     
     # Custom scripts for chroot
     config/includes.chroot/usr/local/sbin/enable-uki
-    config/includes.chroot/usr/local/sbin/setup-dracut-uki
+    config/includes.chroot/usr/local/sbin/whirlpool-install
+    config/includes.chroot/usr/local/sbin/setup-dracut
+    config/includes.chroot/usr/local/sbin/setup-zsh
+    config/includes.chroot/usr/local/sbin/setup-gnome
+    config/includes.chroot/usr/local/sbin/setup-refind
+    config/includes.chroot/usr/local/sbin/generate-uki
 )
 
 # Add hook scripts

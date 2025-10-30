@@ -1,0 +1,9 @@
+#!/bin/bash
+set -e
+
+for KVER in /lib/modules/*; do
+    KVER=$(basename "$KVER")
+    [ -d "/lib/modules/$KVER" ] || continue
+    
+    dracut --force --uefi --kver "$KVER" "/boot/debian-${KVER}.efi"
+done

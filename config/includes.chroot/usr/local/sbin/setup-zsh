@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e
+
+if [ -x /usr/bin/zsh ]; then
+    chsh -s /usr/bin/zsh root
+    sed -i 's|DSHELL=.*|DSHELL=/usr/bin/zsh|g' /etc/adduser.conf
+fi

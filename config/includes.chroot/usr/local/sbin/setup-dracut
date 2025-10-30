@@ -1,0 +1,17 @@
+#!/bin/bash
+set -e
+
+if [ ! -x /usr/bin/dracut ]; then
+    apt-get update
+    apt-get install -y dracut dracut-network
+fi
+
+if dpkg -l | grep -q "^ii.*initramfs-tools"; then
+    apt-get purge -y initramfs-tools initramfs-tools-core
+    apt-get autoremove -y
+fi
+
+if [ -f /etc/dracut.conf.d/20-whirlpool-installed.conf.disabled ]; then
+    mv /etc/dracut.conf.d/20-whirlpool-installed.conf.disabled \
+       /etc/dracut.conf.d/20-whirlpool-installed.conf
+fi
