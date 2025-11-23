@@ -19,7 +19,6 @@ lb config noauto \
     --bootloader grub-efi \
     --binary-images iso-hybrid \
     --checksums sha256 \
-    --compression zstd \
     --debootstrap-options "--include=ca-certificates" \
     --debian-installer-preseedfile /preseed.cfg \
     --firmware-chroot true \
