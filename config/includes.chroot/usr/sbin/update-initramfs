@@ -1,0 +1,4 @@
+#!/bin/sh
+# Dummy update-initramfs to satisfy live-build hooks
+# We are using dracut, so we don't need initramfs-tools
+exit 0
