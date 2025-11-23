@@ -7,3 +7,15 @@ if ! command -v refind-install >/dev/null 2>&1; then
 fi
 
 refind-install --yes
+
+# Copy theme to ESP
+mkdir -p /boot/efi/EFI/refind/themes
+cp -r /usr/share/refind/themes/refind-theme-regular /boot/efi/EFI/refind/themes/
+
+# Apply configuration
+if [ -f /etc/refind.d/whirlpool.conf ]; then
+    # Check if include is already present to avoid duplication
+    if ! grep -q "include themes/refind-theme-regular/theme.conf" /boot/efi/EFI/refind/refind.conf; then
+        cat /etc/refind.d/whirlpool.conf >> /boot/efi/EFI/refind/refind.conf
+    fi
+fi

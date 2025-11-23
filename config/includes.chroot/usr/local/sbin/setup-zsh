@@ -4,4 +4,9 @@ set -e
 if [ -x /usr/bin/zsh ]; then
     chsh -s /usr/bin/zsh root
     sed -i 's|DSHELL=.*|DSHELL=/usr/bin/zsh|g' /etc/adduser.conf
+    
+    # Change shell for the first user (usually UID 1000)
+    if getent passwd 1000 >/dev/null; then
+        chsh -s /usr/bin/zsh $(getent passwd 1000 | cut -d: -f1)
+    fi
 fi

@@ -11,6 +11,7 @@ gnome-shell
 gnome-session
 gnome-settings-daemon
 gnome-keyring
+dconf-cli
 
 # GNOME core applications
 gnome-control-center
@@ -43,7 +44,7 @@ pavucontrol
 # Fonts
 fonts-dejavu-core
 fonts-liberation
-fonts-noto
+fonts-noto-core
 fonts-noto-mono
 fonts-font-awesome
 fonts-fork-awesome
