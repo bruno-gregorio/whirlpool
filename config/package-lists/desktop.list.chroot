@@ -22,6 +22,9 @@ nautilus
 # Document viewers
 evince
 eog
+aspell
+aspell-en
+libtext-iconv-perl
 
 # Archive manager
 file-roller
